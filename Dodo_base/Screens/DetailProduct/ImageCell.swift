@@ -1,9 +1,9 @@
 import UIKit
 
-class ImageCell: UITableViewCell {
+final class ImageCell: UITableViewCell {
     static let reuseId = "ImageCell"
     
-    var photoImageView: UIImageView = {
+    private var photoImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = .init(named: "default")
         return imageView
@@ -19,12 +19,12 @@ class ImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(photoImageView)
         
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         photoImageView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
             make.height.width.equalTo(350)

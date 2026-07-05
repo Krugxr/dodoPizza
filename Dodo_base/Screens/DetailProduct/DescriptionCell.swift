@@ -3,9 +3,9 @@ import UIKit
 
 //UITableViewCell это объект ячейки UIView её нет в папках, это абстрактно
 
-class DescriptionCell: UITableViewCell {
+final class DescriptionCell: UITableViewCell {
     static let reuseId = "DecriptionCell"
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel()
         label.text = "Маргаритта"
         label.textColor = .black
@@ -14,7 +14,7 @@ class DescriptionCell: UITableViewCell {
         
     }()
     
-    var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         var label = UILabel()
         label.text = "Пицца с томатами, итаальянскими травами и моцареллой"
         label.textColor = .black
@@ -33,12 +33,12 @@ class DescriptionCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    private func setupView() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(descriptionLabel)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         nameLabel.snp.makeConstraints { make in
             make.top.right.left.equalTo(contentView).inset(6)
         }
