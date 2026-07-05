@@ -1,33 +1,33 @@
 import UIKit
 
-class ProductBasketCell: UITableViewCell {
+final class ProductBasketCell: UITableViewCell {
     static let reuseId = "ProductBasketCell"
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "Пепперони"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
-    var basketImageView: UIImageView = {
+    private var basketImageView: UIImageView = {
         var imageView = UIImageView.init(image: UIImage.init(named: "pepperoni"))
         return imageView
     }()
     
-    var descriptionLabel: UILabel = {
+    private var descriptionLabel: UILabel = {
         var descriptionLabel = UILabel.init()
         descriptionLabel.text = "30 см, традиционное"
         return descriptionLabel
     }()
     
-    var priceLabel: UILabel = {
+    private var priceLabel: UILabel = {
         var label = UILabel.init()
         label.text = "1 099 Р"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
-    var changeButton: UIButton = {
+    private var changeButton: UIButton = {
         var button = UIButton.init()
         button.setTitle("Изменить", for: .normal)
         button.setTitleColor(.orange, for: .normal)
@@ -46,7 +46,7 @@ class ProductBasketCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setupView() {
+    private func setupView() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(priceLabel)
@@ -56,7 +56,7 @@ class ProductBasketCell: UITableViewCell {
         
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         basketImageView.snp.makeConstraints { make in
             make.top.left.equalTo(contentView).offset(6)
             make.width.height.equalTo(100)

@@ -1,7 +1,7 @@
 import UIKit
 
 
-class OrderView: UIView {
+final class OrderView: UIView {
     var priceButton: UIButton = {
         var button = UIButton.init()
         button.setTitle("Оформить за 500 Р", for: .normal)
@@ -22,12 +22,12 @@ class OrderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    func setupViews() {
+    private func setupViews() {
         self.backgroundColor = .white
         self.addSubview(priceButton)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         priceButton.snp.makeConstraints { make in
             make.top.left.right.equalTo(self).inset(20)
             make.height.equalTo(50)

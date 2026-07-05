@@ -1,10 +1,10 @@
 import UIKit
 
 
-class BasketAdditionCollectionCell: UICollectionViewCell {
+final class BasketAdditionCollectionCell: UICollectionViewCell {
     static let reuseId = "BasketAdditionCollectionCell"
     
-    var containerView: UIView = {
+    private var containerView: UIView = {
         let view = UIView()
         
         // Основные настройки тени
@@ -23,7 +23,7 @@ class BasketAdditionCollectionCell: UICollectionViewCell {
         
         return view
     }()
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "Добрый Кола без сахара"
         label.numberOfLines = 2
@@ -31,20 +31,20 @@ class BasketAdditionCollectionCell: UICollectionViewCell {
         return label
     }()
     
-    var mountLabel: UILabel = {
+    private var mountLabel: UILabel = {
         var label = UILabel.init()
         label.text = "0,5 л"
         label.textAlignment = .center
         return label
     }()
     
-    var additionImageView: UIImageView = {
+    private var additionImageView: UIImageView = {
         var image = UIImageView.init(image: .init(named: "pngtree-coca"))
         image.contentMode = .scaleAspectFill
         return image
     }()
     
-    var priceButton: UIButton = {
+    private var priceButton: UIButton = {
         var button = UIButton.init()
         button.setTitle("145 Р", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -74,7 +74,7 @@ class BasketAdditionCollectionCell: UICollectionViewCell {
         priceButton.setTitle("\(product.price)", for: .normal)
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(containerView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(mountLabel)
@@ -82,7 +82,7 @@ class BasketAdditionCollectionCell: UICollectionViewCell {
         contentView.addSubview(priceButton)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(40)
             make.left.right.bottom.equalTo(4)
