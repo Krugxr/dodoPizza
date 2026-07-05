@@ -12,9 +12,9 @@ extension CategoryCell: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 }
 
-class CategoryCell: UITableViewCell {
+final class CategoryCell: UITableViewCell {
     
-    var categories: [Category] = [] {
+    private var categories: [Category] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -22,7 +22,7 @@ class CategoryCell: UITableViewCell {
     
     static let reuseId = "CategoryCell"
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         //layout.itemSize = CGSize.init(width: 60, height: 30)
         layout.scrollDirection = .horizontal
@@ -48,11 +48,11 @@ class CategoryCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(collectionView)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(contentView).offset(6)
             make.height.equalTo(60)

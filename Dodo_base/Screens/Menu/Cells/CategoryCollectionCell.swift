@@ -1,9 +1,9 @@
 import UIKit
 
 
-class CategoryCollectionCell: UICollectionViewCell {
+final class CategoryCollectionCell: UICollectionViewCell {
     static let reuseId = "CategoryCollectionCell"
-    var containerView: UIView = {
+    private var containerView: UIView = {
         var view = UIView.init()
         view.backgroundColor = .lightGray.withAlphaComponent(0.5)
         view.layer.cornerRadius = 12
@@ -11,7 +11,7 @@ class CategoryCollectionCell: UICollectionViewCell {
         return view
     }()
     
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "Комбический невёебаться комбо "
         return label
@@ -29,12 +29,12 @@ class CategoryCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(containerView)
         containerView.addSubview(nameLabel)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(contentView)
         }

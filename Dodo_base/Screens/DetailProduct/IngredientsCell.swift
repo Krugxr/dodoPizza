@@ -1,15 +1,15 @@
 import UIKit
 
-class IngredientCollectionCell: UICollectionViewCell {
+final class IngredientCollectionCell: UICollectionViewCell {
     
     static let reuseId = "IngredientCollectionCell"
-    var ingridientImageView: UIImageView = {
+    private var ingridientImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "cheese")
         return imageView
     }()
     
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var nameLabel = UILabel()
         nameLabel.text = "Сырный бортик"
         nameLabel.numberOfLines = 0
@@ -17,7 +17,7 @@ class IngredientCollectionCell: UICollectionViewCell {
         return nameLabel
     }()
     
-    var priceLabel: UILabel = {
+    private var priceLabel: UILabel = {
         var priceLabel = UILabel()
         priceLabel.text = "205 ₽"
         priceLabel.textAlignment = .center
@@ -40,13 +40,13 @@ class IngredientCollectionCell: UICollectionViewCell {
         priceLabel.text = String(ingridient.price)+" ₽"
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(ingridientImageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(priceLabel)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         ingridientImageView.snp.makeConstraints { make in
             make.top.left.right.equalTo(contentView)
             make.height.width.equalTo(100)
@@ -68,14 +68,14 @@ class IngredientCollectionCell: UICollectionViewCell {
 }
 
 
-class IngredientsCell: UITableViewCell {
-    var ingridients: [Ingridient] = [] {
+final class IngredientsCell: UITableViewCell {
+    private var ingridients: [Ingridient] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     static let reuseId = "IngredientsCell"
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 110, height: 200)
         var collectionView = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
@@ -100,11 +100,11 @@ class IngredientsCell: UITableViewCell {
         self.ingridients = ingridients
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(collectionView)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(contentView).inset(10)
             make.height.equalTo(850)

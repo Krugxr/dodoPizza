@@ -1,9 +1,9 @@
 import UIKit
 
 
-class BasketAdditionCell: UITableViewCell {
+final class BasketAdditionCell: UITableViewCell {
     
-    var supplements: [Product] = [] {
+    private var supplements: [Product] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -11,14 +11,14 @@ class BasketAdditionCell: UITableViewCell {
     
     static let reuseId = "BasketAdditionCell"
         
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "Добавить к заказу?"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         
         var layout = UICollectionViewFlowLayout.init()
         layout.itemSize = CGSize(width: 120, height: 220)
@@ -41,12 +41,12 @@ class BasketAdditionCell: UITableViewCell {
     }
     
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(nameLabel)
         contentView.addSubview(collectionView)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         nameLabel.snp.makeConstraints { make in
             make.top.left.equalTo(contentView).offset(10)
         }

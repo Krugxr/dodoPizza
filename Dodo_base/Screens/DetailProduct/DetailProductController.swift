@@ -82,12 +82,12 @@ extension DetailProductController: UITableViewDataSource, UITableViewDelegate {
 
 //MARK: - Setup UI
 extension DetailProductController {
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(tableView)
         view.addSubview(orderView)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
@@ -136,5 +136,3 @@ extension DetailProductController {
     }
     
 }
-
-//MARK: - 

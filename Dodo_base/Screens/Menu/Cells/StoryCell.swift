@@ -1,9 +1,9 @@
 import UIKit
 import SnapKit
 
-class StoryCell: UITableViewCell {
+final class StoryCell: UITableViewCell {
     
-    var stories: [Story] = [] {
+    private var stories: [Story] = [] {
         didSet {
             collectionView.reloadData()
         }
