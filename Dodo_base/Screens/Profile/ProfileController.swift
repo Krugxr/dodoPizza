@@ -48,12 +48,12 @@ extension ProfileController: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - Setup UI
 extension ProfileController {
-    func setupViews() {
+    private func setupViews() {
         view.addSubview(tableView)
         
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view)
         }

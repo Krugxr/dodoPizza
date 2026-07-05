@@ -1,9 +1,9 @@
 import UIKit
 
-class ProfileInfoCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
+final class ProfileInfoCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate {
     
     static let reuseId = "ProfileInfoCell"
-    var profileData: [ProfileData] = [] {
+    private var profileData: [ProfileData] = [] {
         didSet {
             collectionView.reloadData()
             
@@ -22,7 +22,7 @@ class ProfileInfoCell: UITableViewCell, UICollectionViewDataSource, UICollection
     }
     
     
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         
         var layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -47,11 +47,11 @@ class ProfileInfoCell: UITableViewCell, UICollectionViewDataSource, UICollection
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(collectionView)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(contentView)
             make.height.equalTo(200)
