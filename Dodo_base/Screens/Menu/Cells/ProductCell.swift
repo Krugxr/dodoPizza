@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ProductCell: UITableViewCell {
+final class ProductCell: UITableViewCell {
     
     static let reuseId = "ProductCell"
     
@@ -12,7 +12,7 @@ class ProductCell: UITableViewCell {
         return view
     }()
     
-    var verticalStackView: UIStackView = {
+    private var verticalStackView: UIStackView = {
         var stackView = UIStackView.init()
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -23,14 +23,14 @@ class ProductCell: UITableViewCell {
         return stackView
     }()
     
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel()
         label.text = "Гавайская"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
-    var detailLabel: UILabel = {
+    private var detailLabel: UILabel = {
         var label = UILabel()
         label.text = "Тесто, Цыпленок, моцарелла, томатный соус"
         label.textColor = .darkGray
@@ -41,7 +41,7 @@ class ProductCell: UITableViewCell {
     }()
     
     // В свойствах класса
-    var priceButton: UIButton = {
+    private var priceButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .orange.withAlphaComponent(0.1)
         button.layer.cornerRadius = 20
@@ -51,7 +51,7 @@ class ProductCell: UITableViewCell {
         return button
     }()
     
-    var oldPriceLabel: UILabel = {
+    private var oldPriceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .systemFont(ofSize: 16, weight: .regular)
@@ -67,7 +67,7 @@ class ProductCell: UITableViewCell {
         return layer
     }()
     
-    var productImageView: UIImageView = {
+    private var productImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = UIImage(named: "pizza")
         imageView.contentMode = .scaleAspectFill
