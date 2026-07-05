@@ -1,9 +1,9 @@
 import UIKit
 
 
-class TotalPriceCell: UITableViewCell {
+final class TotalPriceCell: UITableViewCell {
     static let reuseId = "TotalPriceCell"
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "2 товара на 1 668 рублей"
         label.font = UIFont.boldSystemFont(ofSize: 24)
@@ -20,11 +20,11 @@ class TotalPriceCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupView() {
+    private func setupView() {
         contentView.addSubview(nameLabel)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         nameLabel.snp.makeConstraints { make in
             make.left.right.equalTo(contentView).inset(6)
             make.top.bottom.equalTo(contentView).inset(20)
