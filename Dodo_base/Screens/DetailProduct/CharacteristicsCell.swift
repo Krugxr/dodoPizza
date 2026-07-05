@@ -1,16 +1,16 @@
 import UIKit
 
 
-class CharacteristicsCell: UITableViewCell {
+final class CharacteristicsCell: UITableViewCell {
     
     static let reuseId = "CharacteristicsCell"
-    var sizeSegment: UISegmentedControl = {
+    private var sizeSegment: UISegmentedControl = {
         var segment = UISegmentedControl.init(items: ["20 см", "25 см", "30 см", "35 см"])
         segment.selectedSegmentIndex = 1
         return segment
     }()
     
-    var doughSegment: UISegmentedControl = {
+    private var doughSegment: UISegmentedControl = {
         var segment = UISegmentedControl.init(items: ["Традиционное", "Тонкое"])
         segment.selectedSegmentIndex = 0
         return segment
@@ -25,12 +25,12 @@ class CharacteristicsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(sizeSegment)
         contentView.addSubview(doughSegment)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         sizeSegment.snp.makeConstraints { make in
             make.top.right.left.equalTo(contentView).inset(16)
         }
