@@ -1,9 +1,9 @@
 import UIKit
 
-class StoryCollectionCell: UICollectionViewCell {
+final class StoryCollectionCell: UICollectionViewCell {
     
     static let reuseId = "StoryCollectionCell"
-    var storyImageView: UIImageView = {
+    private var storyImageView: UIImageView = {
         var imageView = UIImageView(image: UIImage.init(named: "story_1"))
         imageView.clipsToBounds = true              // ← Важно!
         imageView.layer.cornerRadius = 16
@@ -20,20 +20,31 @@ class StoryCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+}
+
+//MARK: Public
+
+extension StoryCollectionCell {
+    func update(_ story: Story) {
+        storyImageView.image = UIImage.init(named: story.image)
+    }
+}
+
+//MARK: Setup UI
+
+extension StoryCollectionCell {
+    private func setupViews() {
         contentView.addSubview(storyImageView)
         contentView.layer.shadowOpacity = 0
         contentView.layer.shadowRadius = 0
         contentView.backgroundColor = .clear
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         storyImageView.snp.makeConstraints { make in
             make.top.left.bottom.right.equalTo(contentView)
         }
     }
-    
-    func update(_ story: Story) {
-        storyImageView.image = UIImage.init(named: story.image)
-    }
 }
+
+

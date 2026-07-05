@@ -1,15 +1,15 @@
 import UIKit
 
 
-class BannerCell: UITableViewCell {
+final class BannerCell: UITableViewCell {
     
-    var banners: [Product] = [] {
+    private var banners: [Product] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
     
-    var nameLabel: UILabel = {
+    private var nameLabel: UILabel = {
         var label = UILabel.init()
         label.text = "Часто заказывают"
         label.font = UIFont.boldSystemFont(ofSize: 25)
@@ -17,7 +17,7 @@ class BannerCell: UITableViewCell {
     }()
 
     static let reuseId = "BannerCell"
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         var layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 240, height: 130)
@@ -42,12 +42,12 @@ class BannerCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(collectionView)
         contentView.addSubview(nameLabel)
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(6)
             make.left.right.bottom.equalTo(contentView)
