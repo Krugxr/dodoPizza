@@ -28,6 +28,7 @@ final class ProfileController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ProfileInfoCell.self, forCellReuseIdentifier: ProfileInfoCell.reuseId)
+        tableView.showsVerticalScrollIndicator = false
         return tableView
     }()
     
