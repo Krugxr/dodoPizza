@@ -1,5 +1,12 @@
 import Foundation
-class BannerServise {
+
+
+protocol IBannerServise {
+    func fetchBanners(completion: @escaping (Result<[Product], Error>)->())
+    
+}
+
+final class BannerServise: IBannerServise {
     let session = URLSession.shared //session -> http request
     let decoder = JSONDecoder()     //parse json model -> swift model
     

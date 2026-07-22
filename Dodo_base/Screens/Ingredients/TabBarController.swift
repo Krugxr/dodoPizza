@@ -3,7 +3,9 @@ import UIKit
 class TabBarController: UITabBarController {
     
     let menuController: MenuController = {
-        let controller = MenuController()
+        
+        let controller = di.screenFactory.makeMenuScreen()
+        //let controller = MenuController()
         let tabItem = UITabBarItem(
             title: "",
             image: UIImage(systemName: "house"),
@@ -13,7 +15,9 @@ class TabBarController: UITabBarController {
     }()
     
     let profileController: ProfileController = {
-        let controller = ProfileController()
+        //let controller = ProfileController()
+        let controller = di.screenFactory.makeProfileScreen()
+        //provate let controller: IProfileController
         let tabItem = UITabBarItem(
             title: "",
             image: UIImage(systemName: "person"),
@@ -23,7 +27,9 @@ class TabBarController: UITabBarController {
     }()
     
     let ingridientsController: BasketController = {
-        let controller = BasketController()
+      //  let controller = BasketController()
+        
+        let controller = di.screenFactory.makeBasketScreen()
         let tabItem = UITabBarItem(title: "", image: UIImage(systemName: "trash") , selectedImage: UIImage(systemName: "trash") )
         controller.tabBarItem = tabItem
         return controller

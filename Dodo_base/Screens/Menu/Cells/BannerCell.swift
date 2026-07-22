@@ -3,6 +3,8 @@ import UIKit
 
 final class BannerCell: UITableViewCell {
     
+    var onBannerCellTap: ((Product)->())?
+    
     private var banners: [Product] = [] {
         didSet {
             collectionView.reloadData()
@@ -79,5 +81,33 @@ extension BannerCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("->", indexPath)
+        
+        let banner = banners[indexPath.item]
+        onBannerCellTap?(banner)
+    }
 }
     
+/*
+//declaration closure (obyavlenie)
+var onBannerCellTap: ((Product)->())?
+
+//call closure (vizov)
+onBannerCellTap?(banner)
+
+//realization closure (realization)
+
+cell.onBannerCellTap = { banner in
+    vc.navigateToScreen()
+}
+
+// declaration + realization
+func bannerCellTap() {
+}
+
+//realization
+bannerCelltap()
+ */
+

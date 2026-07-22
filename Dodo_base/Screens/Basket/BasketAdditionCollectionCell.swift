@@ -69,7 +69,7 @@ final class BasketAdditionCollectionCell: UICollectionViewCell {
     
     func update(_ product: Product) {
         nameLabel.text = product.name
-        mountLabel.text = "\(product.price) л"
+        mountLabel.text = ""
         additionImageView.image = UIImage(named: product.image)
         priceButton.setTitle("\(product.price)", for: .normal)
     }

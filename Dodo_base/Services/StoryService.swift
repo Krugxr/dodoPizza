@@ -1,7 +1,11 @@
-
 import Foundation
 
-class StoryService {
+
+protocol IStoryService {
+    func fetchStories (completion: @escaping (Result<[Story], Error>)->())
+}
+
+final class StoryService: IStoryService {
     let session = URLSession.shared //session -> http request
     let decoder = JSONDecoder()     //parse json model -> swift model
     

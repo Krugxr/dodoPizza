@@ -1,7 +1,10 @@
-
 import Foundation
 
-class SupplementsService {
+protocol ISupplementsService {
+    func fetchSupplements (completion: @escaping (Result<[Product], Error>)->())
+}
+
+final class SupplementsService: ISupplementsService {
     let session = URLSession.shared //session -> http request
     let decoder = JSONDecoder()     //parse json model -> swift model
     

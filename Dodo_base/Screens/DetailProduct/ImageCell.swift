@@ -6,6 +6,7 @@ final class ImageCell: UITableViewCell {
     private var photoImageView: UIImageView = {
         var imageView = UIImageView()
         imageView.image = .init(named: "default")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     

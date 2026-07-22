@@ -1,7 +1,11 @@
 
 import Foundation
 
-class CategoryService {
+protocol ICategoryService {
+    func fetchCategories(completion: @escaping (Result<[Category], Error>)->())
+}
+
+final class CategoryService: ICategoryService {
     let session = URLSession.shared //session -> http request
     let decoder = JSONDecoder()     //parse json model -> swift model
     

@@ -1,16 +1,10 @@
-import UIKit
+import Foundation
 
-enum NetworkError: Error {
-    case badUrl
-    case requestError
-    case parsingError(Error)
-    case clientError
-    case serverError
-    case badJSON
-    
+protocol IProductServiсe {
+    func fetchProducts(completion: @escaping (Result<[Product], NetworkError>)->())
 }
 
-class ProductServiсe {
+final class ProductServiсe: IProductServiсe {
     
     let session = URLSession.shared //session -> http request
     let decoder = JSONDecoder()     //parse json model -> swift model

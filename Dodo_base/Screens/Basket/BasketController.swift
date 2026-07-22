@@ -2,8 +2,23 @@ import UIKit
 
 final class BasketController: UIViewController {
     private let orderView = OrderView.init()
-    private let supplementsService = SupplementsService.init()
-    private let storageService = StorageService.init()
+    
+    private let supplementsService: ISupplementsService
+    private let storageService: IStorageService
+    
+    init(supplementsService: ISupplementsService, storageService: IStorageService)
+    {
+        self.supplementsService = supplementsService
+        self.storageService = storageService
+    
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     
     private var products: [Product] = [] {
         didSet {
@@ -78,7 +93,7 @@ extension BasketController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let basketSeciton = BasketSections(rawValue: indexPath.row) else { return UITableViewCell() }
+        guard let basketSeciton = BasketSections(rawValue: indexPath.section) else { return UITableViewCell() }
         
         switch basketSeciton {
         case .totalPrice:
@@ -95,6 +110,11 @@ extension BasketController: UITableViewDelegate, UITableViewDataSource {
         case .additions:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: BasketAdditionCell.reuseId, for: indexPath) as! BasketAdditionCell
+            
+            cell.onBasketCollectionTap = {  product in
+                
+                self.navigateToDetailController(product)
+            }
             
             cell.update(with: supplements)
             return cell
@@ -146,3 +166,11 @@ extension BasketController {
             }
         }
     }
+extension BasketController {
+    private func navigateToDetailController(_ product: Product) {
+        let detailController = di.screenFactory.makeDetailProductScreen(product)
+       
+        present(detailController, animated: true)
+    }
+    
+}

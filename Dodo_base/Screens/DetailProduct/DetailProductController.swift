@@ -2,10 +2,31 @@ import UIKit
 import SwiftUI
 
 final class DetailProductController: UIViewController {
+    
+    
     private let orderView = OrderView.init()
-    private let ingredientService = IngredientService()
-    private let storageService = StorageService()
+    
+    //private let ingredientService = IngredientService()
+    //private let storageService = StorageService()
+    
+    
+    private let ingredientService: IIngredientService
+    private let storageService: IStorageService
+    
+    init(ingredientService: IIngredientService,
+         storageService: IStorageService) {
+        
+        self.ingredientService = ingredientService
+        self.storageService = storageService
+        super.init(nibName: nil, bundle: nil)
+        
+    }
  
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var product: Product? {
         didSet {
             tableView.reloadData()
