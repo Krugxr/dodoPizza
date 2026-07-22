@@ -2,7 +2,20 @@ import UIKit
 
 final class ProfileController: UIViewController {
     
-    private let profileService = ProfileDataService.init()
+//    private let profileService = ProfileDataService.init()
+//    
+//
+        
+    private let profileService: IProfileDataService
+    
+    init(profileService: IProfileDataService) {
+        self.profileService = profileService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var profileData:[ProfileData] = [] {
         didSet {

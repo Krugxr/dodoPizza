@@ -1,6 +1,10 @@
 import Foundation
 
-class IngredientService {
+protocol IIngredientService {
+    func fetchIngridients(completion: @escaping (Result<[Ingridient], Error>)->())
+}
+
+final class IngredientService: IIngredientService {
     
     let session = URLSession.shared
     let decoder = JSONDecoder()

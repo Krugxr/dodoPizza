@@ -4,13 +4,35 @@ import SnapKit
 
 final class MenuController: UIViewController {
     
-    private let productService = ProductServiсe.init()
-    private let categoryService = CategoryService.init()
-    //private let ingredientService = IngredientService()
-    private let bannerService = BannerServise.init()
-    private let storyService = StoryService.init()
+//    private let productService = ProductServiсe.init()
+//    private let categoryService = CategoryService.init()
+//    private let bannerService = BannerServise.init()
+//    private let storyService = StoryService.init()
+//    private let ingredientSerivce = IngredientService()
+
+    private let productService: IProductServiсe
+    private let categoryService: ICategoryService
+    private let bannerService: IBannerServise
+    private let storyService: IStoryService
+    private let ingredientSerivce: IIngredientService
     
-    private let ingredientSerivce = IngredientService()
+    init(productService: IProductServiсe,
+         categoryService: ICategoryService,
+         bannerService: IBannerServise,
+         storyService: IStoryService,
+         ingredientSerivce: IIngredientService)
+    {
+        self.productService = productService
+        self.categoryService = categoryService
+        self.bannerService = bannerService
+        self.storyService = storyService
+        self.ingredientSerivce = ingredientSerivce
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     private var stories: [Story] = [] {
@@ -211,6 +233,14 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
         case .banners:
             
             let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.reuseId, for: indexPath) as! BannerCell
+            
+            cell.onBannerCellTap = { [weak self] banner in
+                guard let self = self else { return}
+               
+                self.navigateToDetailController(banner)
+                
+            }
+            
             cell.update(self.banners)
             return cell
             
@@ -238,8 +268,16 @@ extension MenuController: UITableViewDelegate, UITableViewDataSource {
 extension MenuController {
     private func navigateToDetailController(index: Int) {
         let product = products[index]
-        let detailController = DetailProductController()
-        detailController.update(product)
+        //let detailController = DetailProductController()
+        let detailController = di.screenFactory.makeDetailProductScreen(product)
+        //detailController.update(product)
         present(detailController, animated: true)
     }
+    
+    private func navigateToDetailController(_ product: Product) {
+        let detailController = di.screenFactory.makeDetailProductScreen(product)
+       
+        present(detailController, animated: true)
+    }
+    
 }

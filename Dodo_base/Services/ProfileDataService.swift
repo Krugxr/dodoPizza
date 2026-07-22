@@ -1,7 +1,15 @@
 import Foundation
 
 // MARK: - Service
-class ProfileDataService {
+
+
+
+protocol IProfileDataService {
+    func fetchProfileData(completion: @escaping (Result<[ProfileData], NetworkError>) -> Void)
+    func fetchProfileData() async throws -> [ProfileData] 
+}
+
+final class ProfileDataService: IProfileDataService {
     
     //static let shared = ProfileDataService()
     

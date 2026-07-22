@@ -3,6 +3,7 @@ import UIKit
 
 final class BasketAdditionCell: UITableViewCell {
     
+    var onBasketCollectionTap: ((Product)->())?
     private var supplements: [Product] = [] {
         didSet {
             collectionView.reloadData()
@@ -73,6 +74,16 @@ extension BasketAdditionCell: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BasketAdditionCollectionCell.reuseId, for: indexPath) as! BasketAdditionCollectionCell
         cell.update(supplements[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("mclcdmldc", indexPath)
+        
+        let supplement = supplements[indexPath.item]
+
+        onBasketCollectionTap?(supplement)
+        
+
     }
     
     

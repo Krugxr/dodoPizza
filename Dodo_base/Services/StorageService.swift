@@ -1,4 +1,5 @@
 import Foundation
+
 protocol IStorageService {
     func save(_ products: [Product]) //сохраняем друзей
     func retrieve() -> [Product] //закдалываем их массивом
