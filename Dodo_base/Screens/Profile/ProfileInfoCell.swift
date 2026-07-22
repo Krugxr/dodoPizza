@@ -30,6 +30,7 @@ final class ProfileInfoCell: UITableViewCell, UICollectionViewDataSource, UIColl
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: 150, height: 200)
         var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(ProfileCollectionCell.self, forCellWithReuseIdentifier: ProfileCollectionCell.reuseId)
